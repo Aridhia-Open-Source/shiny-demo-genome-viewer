@@ -1,0 +1,11 @@
+"hgnc_symbol","ensembl_gene_id","mutated_from_allele","mutated_to_allele","mutation_type","consequence_type","chromosome","start","stop","chromosome_start","chromosome_end","count"
+"KRAS","ENSG00000133703","C","T","single base substitution","missense","12",25398284,25398284,25398284,25398284,384
+"KRAS","ENSG00000133703","C","A","single base substitution","missense","12",25398284,25398284,25398284,25398284,300
+"KRAS","ENSG00000133703","C","G","single base substitution","missense","12",25398285,25398285,25398285,25398285,128
+"TP53","ENSG00000141510","C","T","single base substitution","missense","17",7578406,7578406,7578406,7578406,80
+"TP53","ENSG00000141510","C","T","single base substitution","non_coding_exon_variant","17",7578406,7578406,7578406,7578406,50
+"TP53","ENSG00000141510","T","C","single base substitution","intron_variant","17",7578556,7578556,7578556,7578556,44
+"TP53","ENSG00000141510","C","A","single base substitution","missense","17",7578461,7578461,7578461,7578461,36
+"TP53","ENSG00000141510","T","C","single base substitution","missense","17",7578190,7578190,7578190,7578190,32
+"KRAS","ENSG00000133703","T","G","single base substitution","missense","12",25380275,25380275,25380275,25380275,24
+"TP53","ENSG00000141510","C","T","single base substitution","downstream_gene_variant","17",7578406,7578406,7578406,7578406,20

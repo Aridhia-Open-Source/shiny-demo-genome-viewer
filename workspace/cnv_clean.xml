@@ -11,7 +11,7 @@
     <Column Name='chromosome_start' Type='numeric'/>
     <Column Name='chromosome_end' Type='numeric'/>
   </Columns>
-  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='false'/>
   <Success RemovefromUpload='true'/>
   <Fail RemovefromUpload='false'/>
 </TableDefinition>

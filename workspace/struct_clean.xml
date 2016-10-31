@@ -9,7 +9,7 @@
     <Column Name='chr_to' Type='text'/>
     <Column Name='chr_to_bkpt' Type='numeric'/>
   </Columns>
-  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='false'/>
   <Success RemovefromUpload='true'/>
   <Fail RemovefromUpload='false'/>
 </TableDefinition>

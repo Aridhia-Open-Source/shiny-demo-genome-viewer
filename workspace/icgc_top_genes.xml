@@ -13,7 +13,7 @@
     <Column Name='chromosome_end' Type='numeric'/>
     <Column Name='count' Type='numeric'/>
   </Columns>
-  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='false'/>
   <Success RemovefromUpload='true'/>
   <Fail RemovefromUpload='false'/>
 </TableDefinition>

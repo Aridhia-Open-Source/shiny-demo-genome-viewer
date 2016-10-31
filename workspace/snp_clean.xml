@@ -15,7 +15,7 @@
     <Column Name='gene_affected' Type='text'/>
     <Column Name='transcript_affected' Type='text'/>
   </Columns>
-  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='false'/>
   <Success RemovefromUpload='true'/>
   <Fail RemovefromUpload='false'/>
 </TableDefinition>

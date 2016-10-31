@@ -1,0 +1,19 @@
+<TableDefinition TableName='icgc_top_genes' Action='create'>
+  <Columns>
+    <Column Name='hgnc_symbol' Type='text'/>
+    <Column Name='ensembl_gene_id' Type='text'/>
+    <Column Name='mutated_from_allele' Type='text'/>
+    <Column Name='mutated_to_allele' Type='text'/>
+    <Column Name='mutation_type' Type='text'/>
+    <Column Name='consequence_type' Type='text'/>
+    <Column Name='chromosome' Type='numeric'/>
+    <Column Name='start' Type='numeric'/>
+    <Column Name='stop' Type='numeric'/>
+    <Column Name='chromosome_start' Type='numeric'/>
+    <Column Name='chromosome_end' Type='numeric'/>
+    <Column Name='count' Type='numeric'/>
+  </Columns>
+  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Success RemovefromUpload='true'/>
+  <Fail RemovefromUpload='false'/>
+</TableDefinition>

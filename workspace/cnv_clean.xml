@@ -1,0 +1,17 @@
+<TableDefinition TableName='cnv_clean' Action='create'>
+  <Columns>
+    <Column Name='icgc_donor_id' Type='text'/>
+    <Column Name='icgc_specimen_id' Type='text'/>
+    <Column Name='icgc_sample_id' Type='text'/>
+    <Column Name='matched_icgc_sample_id' Type='text'/>
+    <Column Name='mutation_type' Type='text'/>
+    <Column Name='copy_number' Type='numeric'/>
+    <Column Name='segment_median' Type='numeric'/>
+    <Column Name='chromosome' Type='text'/>
+    <Column Name='chromosome_start' Type='numeric'/>
+    <Column Name='chromosome_end' Type='numeric'/>
+  </Columns>
+  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Success RemovefromUpload='true'/>
+  <Fail RemovefromUpload='false'/>
+</TableDefinition>

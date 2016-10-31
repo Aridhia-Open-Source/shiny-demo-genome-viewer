@@ -1,0 +1,21 @@
+<TableDefinition TableName='snp_clean' Action='create'>
+  <Columns>
+    <Column Name='icgc_donor_id' Type='text'/>
+    <Column Name='icgc_specimen_id' Type='text'/>
+    <Column Name='icgc_sample_id' Type='text'/>
+    <Column Name='matched_icgc_sample_id' Type='text'/>
+    <Column Name='chromosome' Type='text'/>
+    <Column Name='chromosome_start' Type='numeric'/>
+    <Column Name='chromosome_end' Type='numeric'/>
+    <Column Name='mutation_type' Type='text'/>
+    <Column Name='reference_genome_allele' Type='text'/>
+    <Column Name='mutated_from_allele' Type='text'/>
+    <Column Name='mutated_to_allele' Type='text'/>
+    <Column Name='consequence_type' Type='text'/>
+    <Column Name='gene_affected' Type='text'/>
+    <Column Name='transcript_affected' Type='text'/>
+  </Columns>
+  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Success RemovefromUpload='true'/>
+  <Fail RemovefromUpload='false'/>
+</TableDefinition>

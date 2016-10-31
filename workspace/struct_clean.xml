@@ -1,0 +1,15 @@
+<TableDefinition TableName='struct_clean' Action='create'>
+  <Columns>
+    <Column Name='icgc_donor_id' Type='text'/>
+    <Column Name='icgc_specimen_id' Type='text'/>
+    <Column Name='icgc_sample_id' Type='text'/>
+    <Column Name='annotation' Type='text'/>
+    <Column Name='chr_from' Type='text'/>
+    <Column Name='chr_from_bkpt' Type='numeric'/>
+    <Column Name='chr_to' Type='text'/>
+    <Column Name='chr_to_bkpt' Type='numeric'/>
+  </Columns>
+  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Success RemovefromUpload='true'/>
+  <Fail RemovefromUpload='false'/>
+</TableDefinition>

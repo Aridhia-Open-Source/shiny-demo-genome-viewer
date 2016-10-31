@@ -1,0 +1,9 @@
+<TableDefinition TableName='genes' Action='create'>
+  <Columns>
+    <Column Name='hgnc_symbol' Type='text'/>
+    <Column Name='ensembl_gene_id' Type='text'/>
+  </Columns>
+  <Format Delimiter=',' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Success RemovefromUpload='true'/>
+  <Fail RemovefromUpload='false'/>
+</TableDefinition>

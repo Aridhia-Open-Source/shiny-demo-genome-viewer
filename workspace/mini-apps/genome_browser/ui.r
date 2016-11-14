@@ -1,5 +1,5 @@
-library(shiny)
-library(ggvis)
+xap.require('shiny')
+xap.require('ggvis')
 
 use_donors <- c("DO32875", "DO32878", "DO32900", "DO33091", "DO33256", "DO33336", "DO33344", "DO33368",
                 "DO33376", "DO33392", "DO33400", "DO33408", "DO33480", "DO33512", "DO33528", "DO33544",

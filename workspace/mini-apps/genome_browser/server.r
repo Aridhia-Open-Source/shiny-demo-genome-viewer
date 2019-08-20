@@ -2,15 +2,25 @@
 
 snp_genes <- snp %>%
   filter(icgc_donor_id %in% use_donors) %>% 
-  inner_join(genes, by=c("gene_affected"="ensembl_gene_id")) %>%
-  inner_join(clinvar, by=c("hgnc_symbol"="gene_symbol", "chromosome"="chromosome", "chromosome_start"="start", "chromosome_end"="stop", "mutated_from_allele"="reference_allele", "mutated_to_allele"="alternate_allele")) 
+  inner_join(genes, by = c("gene_affected" = "ensembl_gene_id")) %>%
+  inner_join(clinvar, by = c("hgnc_symbol" = "gene_symbol", "chromosome" = "chromosome",
+                             "chromosome_start" = "start", "chromosome_end" = "stop",
+                             "mutated_from_allele" = "reference_allele", "mutated_to_allele" = "alternate_allele")) 
 
 # comment this bit out in the platform and use the view instead above
-# top_genes <- snp_genes %>% group_by(hgnc_symbol, gene_affected, mutated_from_allele, mutated_to_allele, mutation_type, consequence_type, chromosome, chromosome_start, chromosome_end) %>% summarise(count=n())
+top_genes <- snp_genes %>%
+  group_by(hgnc_symbol, gene_affected, mutated_from_allele, mutated_to_allele, mutation_type,
+           consequence_type, chromosome, chromosome_start, chromosome_end) %>%
+  summarise(count = n())
 
-snp_transcripts <- snp_genes[,c('icgc_donor_id', 'hgnc_symbol', 'transcript_affected','gene_affected', 'chromosome','chromosome_start','chromosome_end','mutated_from_allele','mutated_to_allele','consequence_type','mutation_type','clinical_significance','dbsnp_rs_no','review_status','variant_id','assembly')]
+snp_transcripts <- snp_genes[, c("icgc_donor_id", "hgnc_symbol", "transcript_affected",
+                                 "gene_affected", "chromosome", "chromosome_start", "chromosome_end",
+                                 "mutated_from_allele", "mutated_to_allele", "consequence_type", "mutation_type",
+                                 "clinical_significance", "dbsnp_rs_no", "review_status", "variant_id", "assembly")]
 
-snp_genes <- snp_genes[,c('icgc_donor_id','hgnc_symbol','gene_affected', 'chromosome','chromosome_start','chromosome_end','mutated_from_allele','mutated_to_allele','consequence_type','mutation_type','clinical_significance','dbsnp_rs_no','review_status','variant_id','assembly')]
+snp_genes <- snp_genes[,c('icgc_donor_id','hgnc_symbol','gene_affected', 'chromosome','chromosome_start',
+                          'chromosome_end','mutated_from_allele','mutated_to_allele','consequence_type',
+                          'mutation_type','clinical_significance','dbsnp_rs_no','review_status','variant_id','assembly')]
 
 
 snp_genes <- snp_genes[!duplicated(snp_genes),]
@@ -54,38 +64,31 @@ server <- function(input, output, session) {
     
     rads <- create_radians(chroms, lengths * re_values$scaling_factors)
     #       if(gender == "female") {
-    #         
     #         create_radians(chroms[1:23], lengths[1:23] * re_values$scaling_factors[1:23])
-    #         
     #       } else {
-    #         
     #         create_radians(chroms, lengths * re_values$scaling_factors)
-    #         
     #       }
     
     isolate(mid <- mean(rads[names(rads) == re_values$chrom_clicked]))
-    
     isolate(prev_mid <- mean(re_values$previous_radians[names(rads) == re_values$chrom_clicked]))
-    
     offset <- mid - prev_mid
     
     rads - offset
-    
   })
   
   
   track_radians <- reactive({
-    
     create_track_radians(radians(), points_per_track = rep(20, length(radians())))
-    
   })
   
   
   output$top_clinvar_genes = renderTable({
-    top_genes <- top_genes[,c("hgnc_symbol","chromosome","chromosome_start", "mutated_from_allele", "mutated_to_allele", "consequence_type", "count")] %>% mutate(count=as.integer(count), chromosome_start=as.integer(chromosome_start)) %>% arrange(desc(count)) %>% top_n(n=10)
+    top_genes <- top_genes[, c("hgnc_symbol","chromosome","chromosome_start", "mutated_from_allele", "mutated_to_allele", "consequence_type", "count")] %>%
+      mutate(count = as.integer(count), chromosome_start = as.integer(chromosome_start)) %>%
+      arrange(desc(count)) %>% top_n(n = 10)
     setNames(top_genes, c("HGNC", "Chr", "Start", "From", "To", "Consequence", "Count"))    
   }, 
-  include.rownames=FALSE)
+  include.rownames = FALSE)
   
   seq_df <- reactive({
     
@@ -100,7 +103,6 @@ server <- function(input, output, session) {
     #    }
     
     create_seq_df(radians(), scale = scale)
-    
   })
   
   snp_plot_data <- reactive({
@@ -122,26 +124,17 @@ server <- function(input, output, session) {
     points$id <- paste0("snp", 1:nrow(points))
     
     points
-    
   })
   
   clinvar_data <- reactive({
-    
-    clinvar_gene_data <- snp_genes %>% filter(icgc_donor_id == input$donor)
-    clinvar_gene_data
-    
+    snp_genes %>% filter(icgc_donor_id == input$donor)
   })
   
   snp_transcript_data <- reactive({
-    
-    snp_data <- snp %>% filter(icgc_donor_id == input$donor)
-    
-    snp_data
-    
+    snp %>% filter(icgc_donor_id == input$donor)
   })
   
   struct_plot_data <- reactive({
-    
     struct_filt <- struct %>% filter(icgc_donor_id == input$donor, 
                                      chr_from != chr_to | abs(chr_from_bkpt - chr_to_bkpt) > 10^6)
     
@@ -198,8 +191,6 @@ server <- function(input, output, session) {
     
     cnv_plot_data$copy_number <- paste0("cnv", cnv_plot_data$copy_number)
     
-    
-    
     cnv_plot_data <- data.frame(rbind(cnv_plot_data, cnv_plot_data),
                                 #r = c(rep(cnv_inner, nrow(cnv_plot_data)), rep(cnv_outer, nrow(cnv_plot_data))))
                                 r = c(cnv_inner, cnv_outer))
@@ -207,11 +198,9 @@ server <- function(input, output, session) {
     cnv_plot_data$id <- paste0("cnv", 1:(nrow(cnv_plot_data)/2))
     
     cnv_plot_data %>% filter(seq %in% re_values$chroms_selected)
-    
   })
   
   cnv_line_data <- reactive({
-    
     donors_filt <- donors %>% filter(icgc_donor_id == input$donor)
     
     gender <- unique(donors_filt$donor_sex)
@@ -230,27 +219,20 @@ server <- function(input, output, session) {
     cnv_line_data$opac <- ifelse(cnv_line_data$seq %in% re_values$chroms_selected, 0, 1)
     
     cnv_line_data
-    
   })
   
   text_df <- reactive({
-    
     seq_df() %>% mutate(theta = (seq_start + seq_end) / 2, r = 1.05)
-    
   })
   
   tooltip_fun <- function(data, session) {
     
     if("mutation_type" %in% names(data)) {
-      
       tt_data <- snp_plot_data()
-      
       row <- tt_data[tt_data$id == data$id, ]
-      
       transcripts <- snp_transcript_data() %>% filter(gene_affected == row$gene_affected)
       
       gene_name <- genes %>% filter(ensembl_gene_id %in% row$gene_affected)
-      
       clin_data <- clinvar_data() %>% filter(gene_affected %in% row$gene_affected)
       
       dbsnp_url = 'http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs='
@@ -259,13 +241,10 @@ server <- function(input, output, session) {
       clin_text = ""
       
       if (nrow(clin_data) > 0) {
-        
         for(i in 1:nrow(clin_data)){
-          
           clin_text <- paste0(clin_text, clin_data[i,c('hgnc_symbol')], ' | ', clin_data[i,c('consequence_type')], ' | ',clin_data[i,c('clinical_significance')], ' | ', '<a href=', dbsnp_url, clin_data[i,c('dbsnp_rs_no')],'>',clin_data[i,c('dbsnp_rs_no')],'</a>',' | ', '<a href=',  clinvar_url, clin_data[i,c('variant_id')] ,' target=_blank>', clin_data[i,c('variant_id')], '</a><br>')
         }
       } else {
-        
         clin_text = paste0(row$gene_affected," | chr" ,row$chromosome,": No associated ClinVar records found.")
       }
       
@@ -278,7 +257,7 @@ server <- function(input, output, session) {
         transcript_text <- paste0(transcript_text, ' <a href=', ensembl_transcript_url, transcripts[i,c('transcript_affected')],' target=_blank>',transcripts[i,c('transcript_affected')],'</a>')
       }
       
-      record_colour = paste0('rgb(',sample(170:255, 1),',',sample(150:255, 1),',',sample(170:255, 1),')')
+      record_colour = paste0('rgb(', sample(170:255, 1), ',', sample(150:255, 1), ',', sample(170:255, 1), ')')
       
       paste0(
         "Start: ", row$chromosome_start, "<br>",
@@ -325,12 +304,10 @@ server <- function(input, output, session) {
   
   
   tooltip_click_fun <- function(data) {
-    
     str(data)
   }
   
   click_handle <- function(data, location, session) {
-    
     if(is.null(data)) return(NULL)
     
     isolate(re_values$chrom_clicked <- data$group)
@@ -343,7 +320,6 @@ server <- function(input, output, session) {
     isolate(re_values$chroms_selected <- chroms[which(re_values$scaling_factors > 1)])
     
     print(data)
-    
   }
   
   fill_domain <- c(c(1:22, "X", "Y"), # chromosomes
@@ -377,7 +353,6 @@ server <- function(input, output, session) {
     "blue", "grey"
   )
   
-  
   add_tooltip <- function(vis, html, on = c("hover", "click")) {
     on <- match.arg(on)
     
@@ -404,6 +379,7 @@ server <- function(input, output, session) {
     )
   }
   
+  # Main plot output
   ggvis() %>% 
     #layer_rects(data = data.frame(x=-1.5,y=-1.5, x2 = 1.5, y2 = 1.5), ~x, ~y, x2 = ~x2, y2 = ~ y2, fill:="#000000") %>%
     add_track(track_radians, 1, 0.9, fill = ~group, stroke = ~group, fillOpacity := 0.7, fillOpacity.hover := 1) %>%

@@ -4,6 +4,7 @@ xap.require(
   "dplyr"
 )
 
+# This is source code for some version of ggcircos
 source("ggcircos_helpers.r")
 
 xap.read_table_tab <- function(table_name) {

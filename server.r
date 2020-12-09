@@ -143,6 +143,7 @@ server <- function(input, output, session) {
     
     links <- links %>% ungroup() %>% mutate(link = as.numeric(link)) %>% arrange(link) %>% group_by(link)
     
+    
     links$annotation <- rep(struct_filt$annotation, each = 3)
     links$pos_from <- rep(struct_filt$chr_from_bkpt, each = 3)
     links$pos_to <- rep(struct_filt$chr_to_bkpt, each = 3)

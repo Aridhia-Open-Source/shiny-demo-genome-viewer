@@ -365,15 +365,9 @@ create_seq_df <- function(radians, seq = unique(names(radians)),
   seq_ends <- radians[seq(2, length(radians), 2)]
   
   data.frame(seq = seq, length = lengths, seq_start = seq_starts,
-             seq_end = seq_ends, scale = scale)
+             seq_end = seq_ends, scale = scale, stringsAsFactors = TRUE)
   
 }
-
-
-
-
-
-
 
 
 create_track_df <- function(track_radians, outer, inner) {

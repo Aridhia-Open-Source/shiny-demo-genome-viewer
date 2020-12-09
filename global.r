@@ -1,18 +1,16 @@
-xap.require(
-  "shiny",
-  "ggvis",
-  "dplyr"
-)
+
+library(shiny)
+library(ggvis)
+library(dplyr)
 
 # This is source code for some version of ggcircos
 source("ggcircos_helpers.r")
 
 xap.read_table_tab <- function(table_name) {
-  proj_path <- project_path()
-  csv_name <- paste0(file.path(proj_path, "workspace", table_name),
+  csv_name <- paste0(file.path("data", table_name),
                      ".csv")
   d <- read.table(csv_name, stringsAsFactors = FALSE, sep = "\t", header = TRUE)
-  names(d) <- char_replace(tolower(names(d)))
+  names(d) <- tolower(names(d))
   d
 }
 

@@ -1,5 +1,3 @@
-xap.require('shiny')
-xap.require('ggvis')
 
 use_donors <- c("DO32875", "DO32878", "DO32900", "DO33091", "DO33256", "DO33336", "DO33344", "DO33368",
                 "DO33376", "DO33392", "DO33400", "DO33408", "DO33480", "DO33512", "DO33528", "DO33544",
@@ -12,11 +10,11 @@ options(shiny.table.class = "data table table-striped table-condensed ")
 
 shinyUI(fluidPage(
   tags$head(
-    includeCSS("styles.css.txt")
+    includeCSS("www/styles.css")
   ),
   
   tags$head(
-    includeScript("ggcircos.js.txt")
+    includeScript("www/ggcircos.js")
   ),
 
   HTML("<h3>Genome Viewer</h3>"),

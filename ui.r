@@ -8,7 +8,7 @@ use_donors <- c("DO32875", "DO32878", "DO32900", "DO33091", "DO33256", "DO33336"
 
 options(shiny.table.class = "data table table-striped table-condensed ")
 
-shinyUI(fluidPage(
+ui <- fluidPage(
   tags$head(
     includeCSS("www/styles.css")
   ),
@@ -89,5 +89,4 @@ shinyUI(fluidPage(
       HTML("<br><div class='footer'></div><br>")
     )
   )
-)
 )

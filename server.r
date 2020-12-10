@@ -7,9 +7,7 @@ server <- function(input, output, session) {
   radians <- reactive({
     
     donors_filt <- donors %>% filter(icgc_donor_id == input$donor)
-    
     gender <- unique(donors_filt$donor_sex)
-    
     rads <- create_radians(chroms, lengths * re_values$scaling_factors)
     #       if(gender == "female") {
     #         create_radians(chroms[1:23], lengths[1:23] * re_values$scaling_factors[1:23])
@@ -24,11 +22,9 @@ server <- function(input, output, session) {
     rads - offset
   })
   
-  
   track_radians <- reactive({
     create_track_radians(radians(), points_per_track = rep(20, length(radians())))
   })
-  
   
   output$top_clinvar_genes = renderTable({
     top_genes <- top_genes[, c("hgnc_symbol","chromosome","chromosome_start", "mutated_from_allele", "mutated_to_allele", "consequence_type", "count")] %>%
@@ -91,7 +87,6 @@ server <- function(input, output, session) {
     
     links <- links %>% ungroup() %>% mutate(link = as.numeric(link)) %>% arrange(link) %>% group_by(link)
     
-    
     links$annotation <- rep(struct_filt$annotation, each = 3)
     links$pos_from <- rep(struct_filt$chr_from_bkpt, each = 3)
     links$pos_to <- rep(struct_filt$chr_to_bkpt, each = 3)
@@ -107,13 +102,10 @@ server <- function(input, output, session) {
                                             1, 0.001)
       ))
     } else {
-      
       links$opac <- 1
-      
     }
 
     links
-    
   })
   
   cnv_filt <- reactive({
@@ -121,7 +113,6 @@ server <- function(input, output, session) {
     cnv %>%
       filter(icgc_donor_id == input$donor) %>% 
       mutate(pos = (chromosome_end + chromosome_start) / 2)
-    
   })
   
   cnv_plot_data <- reactive({

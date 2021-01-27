@@ -1,19 +1,26 @@
+####################
+###### GLOBAL ######
+####################
 
+
+# Load libraries
 library(shiny)
 library(ggvis)
 library(dplyr)
 
-# This is source code for some version of ggcircos
-source("ggcircos_helpers.r")
+# Source config and everything on the code folder
+source("config.R")
 
-xap.read_table_tab <- function(table_name) {
-  csv_name <- paste0(file.path("data", table_name),
-                     ".csv")
-  d <- read.table(csv_name, stringsAsFactors = FALSE, sep = "\t", header = TRUE)
-  names(d) <- tolower(names(d))
-  d
+for(file in list.files("code", full.names = TRUE)) {
+  source(file, local = TRUE)
 }
 
+
+#######################
+###### DATA PREP ######
+#######################
+
+# Donors used for the app
 use_donors <- c("DO32875", "DO32878", "DO32900", "DO33091", "DO33256", "DO33336", "DO33344", "DO33368",
                 "DO33376", "DO33392", "DO33400", "DO33408", "DO33480", "DO33512", "DO33528", "DO33544",
                 "DO33552", "DO33600", "DO33632", "DO33656", "DO33984", "DO34240", "DO34264", "DO34288",
@@ -21,6 +28,7 @@ use_donors <- c("DO32875", "DO32878", "DO32900", "DO33091", "DO33256", "DO33336"
                 "DO34696", "DO34736", "DO34785", "DO34793", "DO34801", "DO34809", "DO34817", "DO34849",
                 "DO34905", "DO34961")
 
+# Read all the tables
 donors <- xap.read_table("donors_clean") %>%
   filter(icgc_donor_id %in% use_donors)
 
@@ -45,6 +53,7 @@ if(exists("xap.conn")) {
     mutate(chromosome = as.character(chromosome))
 }
 
+# Join snp with donors, clinvar
 snp_genes <- snp %>%
   filter(icgc_donor_id %in% use_donors) %>% 
   inner_join(genes, by = c("gene_affected" = "ensembl_gene_id")) %>%
@@ -58,6 +67,7 @@ top_genes <- snp_genes %>%
            consequence_type, chromosome, chromosome_start, chromosome_end) %>%
   summarise(count = n())
 
+# Select columns
 snp_transcripts <- snp_genes[, c("icgc_donor_id", "hgnc_symbol", "transcript_affected",
                                  "gene_affected", "chromosome", "chromosome_start", "chromosome_end",
                                  "mutated_from_allele", "mutated_to_allele", "consequence_type", "mutation_type",
@@ -67,7 +77,7 @@ snp_genes <- snp_genes[,c('icgc_donor_id','hgnc_symbol','gene_affected', 'chromo
                           'chromosome_end','mutated_from_allele','mutated_to_allele','consequence_type',
                           'mutation_type','clinical_significance','dbsnp_rs_no','review_status','variant_id','assembly')]
 
-
+# Remove duplicates
 snp_genes <- snp_genes[!duplicated(snp_genes),]
 
 
@@ -94,6 +104,10 @@ lengths <- c(249250621,243199373,198022430,191154276,180915260,171115067,
 
 radians_f <- create_radians(chroms[1:23], lengths[1:23])
 radians_m <- create_radians(chroms, lengths)
+
+
+
+
 
 
 

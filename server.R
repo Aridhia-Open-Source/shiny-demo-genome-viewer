@@ -1,3 +1,8 @@
+####################
+###### SERVER ######
+####################
+
+
 
 server <- function(input, output, session) {
   
@@ -26,13 +31,12 @@ server <- function(input, output, session) {
     create_track_radians(radians(), points_per_track = rep(20, length(radians())))
   })
   
-  output$top_clinvar_genes = renderTable({
+  output$top_clinvar_genes = renderDataTable({
     top_genes <- top_genes[, c("hgnc_symbol","chromosome","chromosome_start", "mutated_from_allele", "mutated_to_allele", "consequence_type", "count")] %>%
       mutate(count = as.integer(count), chromosome_start = as.integer(chromosome_start)) %>%
       arrange(desc(count)) %>% top_n(n = 10)
-    setNames(top_genes, c("HGNC", "Chr", "Start", "From", "To", "Consequence", "Count"))    
-  }, 
-  include.rownames = FALSE)
+    setNames(top_genes, c("HGNC", "Chr", "Start", "From", "To", "Consequence", "Count"))
+  }, options = list(pageLength = 10))
   
   seq_df <- reactive({
     

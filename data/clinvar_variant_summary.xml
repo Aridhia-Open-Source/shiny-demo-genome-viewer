@@ -29,7 +29,7 @@
     <Column Name='alternate_allele' Type='text'/>
     <Column Name='submitter_categories' Type='numeric'/>
   </Columns>
-  <Format Delimiter='	' TextQualifier='&quot;' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
+  <Format Delimiter=',' TextQualifier='&quot;' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='true'/>
   <Success RemovefromUpload='true'/>
   <Fail RemovefromUpload='false'/>
 </TableDefinition>

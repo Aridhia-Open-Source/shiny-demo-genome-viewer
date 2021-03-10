@@ -44,14 +44,17 @@ cnv <- xap.read_table("cnv_clean") %>%
 genes <- xap.read_table("genes")
 top_genes <- xap.read_table("icgc_top_genes")
 
+clinvar <- xap.read_table("clinvar_variant_summary_new") %>%
+  mutate(chromosome = as.character(chromosome))
+
 # temporary workaround to resolve tab separation in clinvar data
-if(exists("xap.conn")) {
-  clinvar <- xap.read_table("clinvar_variant_summary") %>%
-    mutate(chromosome = as.character(chromosome))
-} else {
-  clinvar <- xap.read_table_tab("clinvar_variant_summary") %>%
-    mutate(chromosome = as.character(chromosome))
-}
+# if(exists("xap.conn")) {
+#   clinvar <- xap.read_table("clinvar_variant_summary") %>%
+#     mutate(chromosome = as.character(chromosome))
+# } else {
+#   clinvar <- xap.read_table_tab("clinvar_variant_summary") %>%
+#     mutate(chromosome = as.character(chromosome))
+# }
 
 # Join snp with donors, clinvar
 snp_genes <- snp %>%

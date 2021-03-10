@@ -29,22 +29,22 @@ use_donors <- c("DO32875", "DO32878", "DO32900", "DO33091", "DO33256", "DO33336"
                 "DO34905", "DO34961")
 
 # Read all the tables
-donors <- xap.read_table("donors_clean") %>%
+donors <- read_data("donors_clean") %>%
   filter(icgc_donor_id %in% use_donors)
 
-snp <- xap.read_table("snp_clean") %>%
+snp <- read_data("snp_clean") %>%
   filter(icgc_donor_id %in% use_donors, chromosome != "MT")
 
-struct <- xap.read_table("struct_clean") %>%
+struct <- read_data("struct_clean") %>%
   filter(icgc_donor_id %in% use_donors) 
 
-cnv <- xap.read_table("cnv_clean") %>%
+cnv <- read_data("cnv_clean") %>%
   filter(icgc_donor_id %in% use_donors)
 
-genes <- xap.read_table("genes")
-top_genes <- xap.read_table("icgc_top_genes")
+genes <- read_data("genes")
+top_genes <- read_data("icgc_top_genes")
 
-clinvar <- xap.read_table("clinvar_variant_summary_new") %>%
+clinvar <- read_data("clinvar_variant_summary") %>%
   mutate(chromosome = as.character(chromosome))
 
 # temporary workaround to resolve tab separation in clinvar data

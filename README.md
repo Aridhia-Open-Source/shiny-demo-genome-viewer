@@ -2,7 +2,7 @@
 
 # GENOME VIEWER
 
-This RShiny mini-app allows you to visualise whole genomes usig Circos, which is a visualisation tool developed for displaying and analysing data from genome sequencing.
+This RShiny mini-app allows you to visualise whole genomes using Circos, which is a visualisation tool developed for displaying and analysing data from genome sequencing.
 
 This app uses data taken from https://dcc.icgc.org/. Specifically, the data comes from a project led by Sean M. Grimmond and Andrew V. Biankin, who gathered samples of pancreatic adenocarcinoma tumours from various donors. The data from this specific project can be found
 https://dcc.icgc.org/repository/icgc/release_19/Projects/PACA-AU.

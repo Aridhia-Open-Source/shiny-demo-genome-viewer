@@ -11,7 +11,7 @@ ui <- fluidPage(
   tags$head(
     includeScript("www/ggcircos.js")
   ),
-  
+  tags$head(tags$title("Genome Viewer")),
   # Title
   HTML("<h3>Genome Viewer</h3>"),
   # Drop-down with app Help

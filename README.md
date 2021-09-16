@@ -38,12 +38,14 @@ git clone https://github.com/aridhia/demo-genome-viewer
 2. Run the `dependencies.R` script to install all the packages required by the app
 3. Use `runApp()` to start the app.
 
+If you are running the app in your local computer, there is no need to run `./code/load_data.R`, as this script is workspace-specific.
+
 #### Deploying to the workspace
 
 1. Create a new mini-app in the workspace called "genome-viewer"" and delete the folder created for it
 2. Download this GitHub repo as a .ZIP file, or clone the repository and zip all the files
 3. Upload the .ZIP file to the workspace and upzip it inside a folder called "genome-viewer"
-4. Run the `dependencies.R` and `load_data.R` allocated inside the `code` folder to install all the packages and load all the data required by the app
+4. Run the `dependencies.R` and `./code/load_data.R` to install all the packages and load all the data required by the app
 5. Run the app in your workspace
 
 For more information visit https://knowledgebase.aridhia.io/article/how-to-upload-your-mini-app/

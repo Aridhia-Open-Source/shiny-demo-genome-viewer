@@ -10,7 +10,7 @@ https://dcc.icgc.org/repository/icgc/release_19/Projects/PACA-AU.
 
 For more information, you can read the blog about this app at http://www.aridhia.com/blog/beauty-in-simplicity-visualising-large-scale-genomic-data/.
 
-### About the Genome Viewer mini-app
+#### About the Genome Viewer mini-app
 
 The **Circos-style plot** has a number of layers (from outwards to inwards):
 
@@ -34,14 +34,16 @@ You can clone this repository by using the command:
 git clone https://github.com/aridhia/demo-genome-viewer
 ```
 
-Open the .Rproj file in RStudio and use `runApp()` to start the app.
+1. Open the .Rproj file in RStudio 
+2. Run the `dependencies.R` script to install all the packages required by the app
+3. Use `runApp()` to start the app.
 
 #### Deploying to the workspace
 
 1. Create a new mini-app in the workspace called "genome-viewer"" and delete the folder created for it
 2. Download this GitHub repo as a .ZIP file, or clone the repository and zip all the files
 3. Upload the .ZIP file to the workspace and upzip it inside a folder called "genome-viewer"
-4. Run the `dependencies.R` script to install all the packages required by the app
+4. Run the `dependencies.R` and `load_data.R` allocated inside the `code` folder to install all the packages and load all the data required by the app
 5. Run the app in your workspace
 
 For more information visit https://knowledgebase.aridhia.io/article/how-to-upload-your-mini-app/

@@ -8,12 +8,10 @@ library(shiny)
 library(ggvis)
 library(dplyr)
 
-# Source config and everything on the code folder
-source("config.R")
-
-for(file in list.files("code", full.names = TRUE)) {
-  source(file, local = TRUE)
-}
+# Source everything on the code folder
+source("./code/app_info.R")
+source("./code/config.R")
+source("./code/ggcircos_helpers.R")
 
 
 #######################

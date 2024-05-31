@@ -40,13 +40,19 @@ git clone https://github.com/aridhia/demo-genome-viewer
 
 If you are running the app in your local computer, there is no need to run `./code/load_data.R`, as this script is workspace-specific.
 
-#### Deploying to the workspace
+### Deploying to the workspace
 
-1. Create a new mini-app in the workspace called "genome-viewer"" and delete the folder created for it
-2. Download this GitHub repo as a .ZIP file, or clone the repository and zip all the files
-3. Upload the .ZIP file to the workspace and upzip it inside a folder called "genome-viewer"
-4. Run the `dependencies.R` and `./code/load_data.R` to install all the packages and load all the data required by the app
-5. Run the app in your workspace
+1. Download this GitHub repo as a .zip file.
+2. Create a new blank Shiny app in your workspace called "genome-viewer".
+3. Navigate to the `genome-viewer` folder under "files".
+4. Delete the `app.R` file from the `genome-viewer` folder. Make sure you keep the `.version` file!
+5. Upload the .zip file to the `genome-viewer` folder.
+6. Extract the .zip file. Make sure "Folder name" is blank and "Remove compressed file after extracting" is ticked.
+7. Navigate into the unzipped folder.
+8. Select all content of the unzipped folder, and move it to the `genome-viewer` folder (so, one level up).
+9. Delete the now empty unzipped folder.
+10. Start the R console and run the `dependencies.R` script to install all R packages that the app requires.
+11. Run the app in your workspace.
 
 For more information visit https://knowledgebase.aridhia.io/article/how-to-upload-your-mini-app/
 

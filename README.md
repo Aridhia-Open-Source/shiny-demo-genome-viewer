@@ -31,7 +31,7 @@ On the right-side of the screen you will see:
 You can clone this repository by using the command:
 
 ```
-git clone https://github.com/aridhia/demo-genome-viewer
+git clone https://github.com/Aridhia-Open-Source/shiny-demo-genome-viewer
 ```
 
 1. Open the .Rproj file in RStudio 

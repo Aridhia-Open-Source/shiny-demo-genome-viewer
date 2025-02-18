@@ -7,6 +7,11 @@ ui <- fluidPage(
   tags$head(
     includeCSS("www/styles.css")
   ),
+  tags$head(tags$style(HTML('
+    .ggvis-output.recalculating {
+      --shiny-fade-opacity: 1;
+          }
+  '))),
   # Include JSON script
   tags$head(
     includeScript("www/ggcircos.js")

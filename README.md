@@ -40,7 +40,7 @@ git clone https://github.com/Aridhia-Open-Source/shiny-demo-genome-viewer
 
 If you are running the app in your local computer, there is no need to run `./code/load_data.R`, as this script is workspace-specific.
 
-### Deploying to the workspace
+#### Deploying to the workspace
 
 1. Download this GitHub repo as a .zip file.
 2. Create a new blank Shiny app in your workspace called "genome-viewer".

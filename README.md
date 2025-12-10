@@ -2,7 +2,7 @@
 
 # GENOME VIEWER
 
-This RShiny mini-app allows you to visualise whole genomes using Circos, which is a visualisation tool developed for displaying and analysing data from genome sequencing.
+This R web app allows you to visualise whole genomes using Circos, which is a visualisation tool developed for displaying and analysing data from genome sequencing.
 
 This app uses data taken from https://dcc.icgc.org/. Specifically, the data comes from a project led by Sean M. Grimmond and Andrew V. Biankin, who gathered samples of pancreatic adenocarcinoma tumours from various donors. The data from this specific project can be found
 https://dcc.icgc.org/repository/icgc/release_19/Projects/PACA-AU.
@@ -43,7 +43,7 @@ If you are running the app in your local computer, there is no need to run `./co
 #### Deploying to the workspace
 
 1. Download this GitHub repo as a .zip file.
-2. Create a new blank Shiny app in your workspace called "genome-viewer".
+2. Create a new blank R web app in your workspace called "genome-viewer".
 3. Navigate to the `genome-viewer` folder under "files".
 4. Delete the `app.R` file from the `genome-viewer` folder. Make sure you keep the `.version` file!
 5. Upload the .zip file to the `genome-viewer` folder.
